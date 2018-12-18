@@ -2,18 +2,25 @@
   "name": "project_2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "node_modules/.bin/eslint .",
+    "lint-fix": "node_modules/.bin/eslint --fix ."
+  },
+  "standard": {
+    "env": [ "mocha" ]
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "crypto-js": "^3.1.9-1",
-    "level": "^4.0.0"
+    "level": "^4.0.0",
+    "chai": "^4.2.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0"
   }
 }
