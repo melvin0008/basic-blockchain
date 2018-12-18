@@ -10,8 +10,11 @@ class Blockchain {
 
     constructor() {
         this.bd = new LevelSandbox.LevelSandbox();
-        this.generateGenesisBlock().then(created => { if (created) console.log("Successfully created first block") });
     }
+
+    static get firstBlockData() {
+        return "First block in the chain - Genesis block";
+      }
 
     // Auxiliar method to create a Genesis Block (always with height= 0)
     // You have to options, because the method will always execute when you create your blockchain
@@ -21,7 +24,7 @@ class Blockchain {
         // Add your code here
         let height = await this.getBlockHeight();
         if (height !== -1) return false;
-        return await this.addBlock(new Block.Block("First block in the chain - Genesis block"));
+        this._addBlockToDB(new Block.Block(firstBlockData), -1);
     }
 
     // Get block height, it is auxiliar method that return the height of the blockchain
@@ -33,16 +36,12 @@ class Blockchain {
     // Add new block
     async addBlock(block) {
         // Add your code here
-        const height = await this.getBlockHeight();
-        block.height = height + 1;
-        block.time = new Date().getTime().toString().slice(0,-3);
-
-        if (block.height > 0) {
-            const previousBlock = await this.getBlock(block.height - 1);
-            block.previousBlockHash = previousBlock.hash;
+        let height = await this.getBlockHeight();
+        if (height === -1) {
+            await this.generateGenesisBlock();
+            height++;
         }
-        block.hash = this._generateBlockHash(block);
-        return await this.bd.addLevelDBData(block.height, JSON.stringify(block));
+        return await this._addBlockToDB(block, height);
     }
 
     // Get Block By Height
@@ -104,6 +103,18 @@ class Blockchain {
 
     _generateBlockHash(block) {
         return SHA256(JSON.stringify(block)).toString();
+    }
+
+    async _addBlockToDB(block, height) {
+        block.height = height + 1;
+        block.time = new Date().getTime().toString().slice(0,-3);
+
+        if (block.height > 0) {
+            const previousBlock = await this.getBlock(block.height - 1);
+            block.previousBlockHash = previousBlock.hash;
+        }
+        block.hash = this._generateBlockHash(block);
+        return this.bd.addLevelDBData(block.height, JSON.stringify(block));
     }
 }
 

@@ -7,9 +7,9 @@ const Block = require('./Block.js');
 
 let myBlockChain = new BlockChain.Blockchain();
 
-setTimeout(function () {
-	console.log("Waiting...")
-}, 10000);
+// setTimeout(function () {
+// 	console.log("Waiting...")
+// }, 10000);
 
 /******************************************
  ** Function for Create Tests Blocks   ****
@@ -33,9 +33,9 @@ setTimeout(function () {
  ** Function to get the Height of the Chain ****
  ***********************************************/
 // Be careful this only will work if `getBlockHeight` method in Blockchain.js file return a Promise
-// myBlockChain.getBlockHeight().then((height) => {
-// 	console.log("height" + height);
-// }).catch((err) => { console.log(err);});
+myBlockChain.getBlockHeight().then((height) => {
+	console.log("height" + height);
+}).catch((err) => { console.log(err);});
 
 
 /***********************************************
