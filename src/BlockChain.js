@@ -74,7 +74,7 @@ class Blockchain {
     const errorLog = [];
     let previousBlockHash = '';
     const currentHeight = await this.getBlockHeight();
-    for (let height = 0; height < currentHeight; height += 1) {
+    for (let height = 0; height <= currentHeight; height += 1) {
       /* eslint-disable no-await-in-loop */
       if (!await this.validateBlock(height)) errorLog.push(height);
       const block = await this.getBlock(height);

@@ -7,6 +7,7 @@ const Block = require('../src/Block.js');
 let myBlockChain;
 const blockChainheights = Array(10).fill(1).map((x, y) => x + y);
 let block5;
+let lastBlock;
 
 describe('Blockchain', () => {
   before(() => new Promise(async (resolve) => {
@@ -72,6 +73,54 @@ describe('Blockchain', () => {
 
       after(async () => {
         await myBlockChain._modifyBlock(block5.height, block5);
+      });
+    });
+
+    describe('when last blocks body is tampered', async () => {
+      let height;
+      before(async () => {
+        height = await myBlockChain.getBlockHeight();
+        lastBlock = await myBlockChain.getBlock(height);
+        const tamperedLastBlock = { ...lastBlock, body: 'Tampered Block' };
+        await myBlockChain._modifyBlock(tamperedLastBlock.height, tamperedLastBlock);
+      });
+
+      it('returns error length to be one', async () => {
+        const chainValidatedErrors = await myBlockChain.validateChain();
+        expect(chainValidatedErrors.length).to.equal(1);
+      });
+
+      it('returns error array with correct error height', async () => {
+        const chainValidatedErrors = await myBlockChain.validateChain();
+        expect(chainValidatedErrors).to.deep.equal([height]);
+      });
+
+      after(async () => {
+        await myBlockChain._modifyBlock(lastBlock.height, lastBlock);
+      });
+    });
+
+    describe('when last blocks hash is tampered', async () => {
+      let height;
+      before(async () => {
+        height = await myBlockChain.getBlockHeight();
+        lastBlock = await myBlockChain.getBlock(height);
+        const tamperedLastBlock = { ...lastBlock, hash: 'jndininuud94j9i3j49dij9ijij39idj9oi' };
+        await myBlockChain._modifyBlock(tamperedLastBlock.height, tamperedLastBlock);
+      });
+
+      it('returns error length to be one', async () => {
+        const chainValidatedErrors = await myBlockChain.validateChain();
+        expect(chainValidatedErrors.length).to.equal(1);
+      });
+
+      it('returns error array with correct error height', async () => {
+        const chainValidatedErrors = await myBlockChain.validateChain();
+        expect(chainValidatedErrors).to.deep.equal([height]);
+      });
+
+      after(async () => {
+        await myBlockChain._modifyBlock(lastBlock.height, lastBlock);
       });
     });
   });
