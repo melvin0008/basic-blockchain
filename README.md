@@ -23,7 +23,7 @@ Using Postman post { 'body': 'Random data' } to http://localhost:8000/block
 
 ## GET /block/:height
 
-Open http://localhost:8000/block/<height>
+Open http://localhost:8000/block/:height replacing height with the height of the block you want
 
 Make sure you have posted atleast one block
 
