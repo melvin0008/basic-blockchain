@@ -4,7 +4,7 @@
 
 const level = require('level');
 
-const chainDB = '../chaindata';
+const chainDB = './chaindata';
 
 class LevelSandbox {
   constructor() {
@@ -18,7 +18,7 @@ class LevelSandbox {
       val = await this.db.get(key);
     } catch (err) {
       console.log('Not found!');
-      return null;
+      return err;
     }
     return val;
   }

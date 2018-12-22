@@ -1,4 +1,6 @@
-const { expect } = require('chai');
+const chai = require('chai');
+
+const { expect } = chai;
 
 const BlockChain = require('../src/BlockChain.js');
 const Block = require('../src/Block.js');

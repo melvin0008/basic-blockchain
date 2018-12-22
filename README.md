@@ -1,6 +1,6 @@
-# Project #2. Private Blockchain
+# Project #3. RESTful Web API with Node.js Framework
 
-This is Project 2, Private Blockchain, in this project I created the classes to manage my private blockchain, to be able to persist my blochchain I used LevelDB.
+This is Project 3, RESTful Web API with Node.js Framework, in this project I created an Express Server to handle post and get requests.
 
 ## Setup project for Review.
 
@@ -11,3 +11,19 @@ To setup the project for review do the following:
 ## Testing the project
 
 To test the project run __npm test__
+
+## Manual test the project
+
+run __npm start__
+The server is runninng on port 8000
+
+## POST /block
+
+Using Postman post { 'body': 'Random data' } to http://localhost:8000/block
+
+## GET /block/:height
+
+Open http://localhost:8000/block/<height>
+
+Make sure you have posted atleast one block
+

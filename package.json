@@ -2,8 +2,10 @@
   "name": "project_2",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "start": "node index.js",
+    "test": "mocha test/*.js --exit",
     "lint": "node_modules/.bin/eslint .",
     "lint-fix": "node_modules/.bin/eslint --fix ."
   },
@@ -15,9 +17,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "crypto-js": "^3.1.9-1",
-    "level": "^4.0.0",
-    "chai": "^4.2.0"
+    "express": "^4.16.4",
+    "import-lazy": "^3.1.0",
+    "level": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^5.10.0",
