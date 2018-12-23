@@ -12,18 +12,28 @@ To setup the project for review do the following:
 
 To test the project run __npm test__
 
-## Manual test the project
+## Manual running the project
 
 run __npm start__
 The server is runninng on port 8000
 
-## POST /block
+#### POST /block
 
 Using Postman post { 'body': 'Random data' } to http://localhost:8000/block
 
-## GET /block/:height
+or you can even curl
+
+```
+curl -H "Content-Type: application/json" -d '{"body":"Random data" }' http://localhost:8000/block
+```
+
+#### GET /block/:height
 
 Open http://localhost:8000/block/:height replacing height with the height of the block you want
 
 Make sure you have posted atleast one block
+
+```
+ curl http://localhost:8000/block/0
+```
 
