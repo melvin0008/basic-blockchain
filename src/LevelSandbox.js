@@ -27,10 +27,10 @@ class LevelSandbox {
   async addLevelDBData(key, value) {
     try {
       await this.db.put(key, value);
-      return true;
+      return value;
     } catch (err) {
       console.log(`Block ${key} submission failed`, err);
-      return false;
+      return err;
     }
   }
 

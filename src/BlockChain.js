@@ -43,7 +43,8 @@ class Blockchain {
       await this.generateGenesisBlock();
       height += 1;
     }
-    return this._addBlockToDB(block, height);
+    const blockCreated = await this._addBlockToDB(block, height);
+    return JSON.parse(blockCreated);
   }
 
   // Get Block By Height
