@@ -12,7 +12,7 @@ To setup the project for review do the following:
 
 To test the project run __npm test__
 
-## Manual running the project
+## Manually running the project
 
 run __npm start__
 The server is runninng on port 8000
