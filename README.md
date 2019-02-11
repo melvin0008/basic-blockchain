@@ -11,6 +11,18 @@ To setup the project for review do the following:
 run __npm start__
 The server is runninng on port 8000
 
+#### POST /requestValidation
+
+Using Postman post { 'address': address } to http://localhost:8000/requestValidation
+In the response you would be getting message which you would be using to signing.
+After signing send the signature as a param to /message-signature/validate
+
+
+#### POST /message-signature/validate
+Using Postman post { 'address': address, 'signature': signature } to http://localhost:8000/message-signature/validate
+
+This allows the address to be validated so that you can register a star
+
 #### POST /block
 
 Using Postman post { 'address': address, 'star': { 'ra': ra, 'dec': dec, 'story': story} } to http://localhost:8000/block
