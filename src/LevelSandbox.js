@@ -47,6 +47,46 @@ class LevelSandbox {
       });
     });
   }
+
+  // Method that returns block by hash
+  getBlockByHash(hash) {
+    return new Promise((resolve, reject) => {
+      let block;
+      this.db.createReadStream().on('data', (data) => {
+        block = JSON.parse(data.value);
+        if (!LevelSandbox.isBlockFirst(block) && block.hash === hash) {
+          resolve(block);
+        }
+      }).on('error', (err) => {
+        reject(err);
+      }).on('close', () => {
+        reject(new Error('Block not found'));
+      });
+    });
+  }
+
+  // Method that returns block by address
+  getBlocksByAddress(address) {
+    return new Promise((resolve, reject) => {
+      const blocks = [];
+      let block;
+      this.db.createReadStream().on('data', (data) => {
+        block = JSON.parse(data.value);
+        if (!LevelSandbox.isBlockFirst(block) && block.body && block.body.address === address) {
+          blocks.push(block);
+        }
+      }).on('error', (err) => {
+        reject(err);
+      }).on('close', () => {
+        resolve(blocks);
+      });
+    });
+  }
+
+  // Boolean to return whether the block passed is first or not
+  static isBlockFirst(block) {
+    return parseInt(block.height, 10) === 0;
+  }
 }
 
 module.exports.LevelSandbox = LevelSandbox;

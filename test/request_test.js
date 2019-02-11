@@ -52,23 +52,6 @@ describe('Blockchain', () => {
     });
 
     describe('POST', async () => {
-      describe('POST with body', () => {
-        it('it should post block', async () => {
-          const bodyString = 'Random block';
-          const height = await server.blockchain.getBlockHeight();
-          const res = await chai.request(server)
-            .post('/block')
-            .send({
-              body: bodyString,
-            });
-
-          expect(res).to.have.status(200);
-          expect(res.body.body).to.equal(bodyString);
-          const newHeight = await server.blockchain.getBlockHeight();
-          expect(newHeight).to.equal(height + 1);
-        });
-      });
-
       describe('POST with empty body', () => {
         it('it should not post block', async () => {
           const height = await server.blockchain.getBlockHeight();

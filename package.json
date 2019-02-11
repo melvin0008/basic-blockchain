@@ -17,12 +17,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bitcoinjs-lib": "^4.0.2",
+    "bitcoinjs-message": "^2.0.0",
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.4",
     "import-lazy": "^3.1.0",
+    "hex2ascii": "0.0.3",
     "level": "^4.0.0"
   },
   "devDependencies": {
