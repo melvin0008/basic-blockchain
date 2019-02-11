@@ -64,3 +64,6 @@ Make sure you have posted atleast one block
  curl http://localhost:8000/stars/hash:hash
 ```
 
+#### Credits:
+
+Refered https://www.youtube.com/watch?v=spCGRG9ntls&feature=youtu.be
