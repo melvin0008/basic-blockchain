@@ -47,7 +47,12 @@ const App = {
     const starName = await lookUptokenIdToStarInfo(tokenId).call();
 
     const nameSpan = document.getElementById("starNameOutput");
-    nameSpan.innerHTML = "Name of the start with id " + tokenId + " is " + starName;
+
+    if (starName == "") {
+      nameSpan.innerHTML = "No start with id " + tokenId + " exists.";
+    } else {
+      nameSpan.innerHTML = "Name of the start with id " + tokenId + " is " + starName;
+    }
   }
 
 };
