@@ -1,37 +1,28 @@
 {
-  "name": "project_2",
+  "name": "dapp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "mocha test/*.js --exit",
-    "lint": "node_modules/.bin/eslint .",
-    "lint-fix": "node_modules/.bin/eslint --fix ."
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
   },
-  "standard": {
-    "env": [
-      "mocha"
-    ]
+  "dependencies": {
+    "openzeppelin-solidity": "2.1.2",
+    "truffle": "^5.0.12",
+    "truffle-hdwallet-provider": "1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melvin0008/basic-blockchain.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bitcoinjs-lib": "^4.0.2",
-    "bitcoinjs-message": "^2.0.0",
-    "body-parser": "^1.18.3",
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.0",
-    "crypto-js": "^3.1.9-1",
-    "express": "^4.16.4",
-    "import-lazy": "^3.1.0",
-    "hex2ascii": "0.0.3",
-    "level": "^4.0.0"
+  "bugs": {
+    "url": "https://github.com/melvin0008/basic-blockchain/issues"
   },
-  "devDependencies": {
-    "eslint": "^5.10.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "mocha": "^5.2.0"
-  }
+  "homepage": "https://github.com/melvin0008/basic-blockchain#readme"
 }
